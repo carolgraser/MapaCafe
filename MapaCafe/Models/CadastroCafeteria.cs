@@ -7,7 +7,8 @@ public class CadastroCafeteria{
     public string bairroCafeteria{get; set; } = string.Empty;
     public int numeroEndereco{get; set; };
     public string? cepEndereco{get; set;};
-    public string comidasFavoritas{ get; set; } = string.Empty; 
+    public list<string> comidasFavoritas{ get; set; };
+    public list<string> bebidasFavoritas{ get; set;};
     public int avaliacaoCafeteria{get; set; };
     public string observacoesCafeteria{get; set; } = string.Empty;
 }
