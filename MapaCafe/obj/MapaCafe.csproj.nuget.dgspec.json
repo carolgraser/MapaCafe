@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/MapaCafe.csproj": {}
+    "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj": {}
   },
   "projects": {
-    "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/MapaCafe.csproj": {
+    "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/MapaCafe.csproj",
+        "projectUniqueName": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj",
         "projectName": "MapaCafe",
-        "projectPath": "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/MapaCafe.csproj",
-        "packagesPath": "/Users/carolinacochlargraser/.nuget/packages/",
-        "outputPath": "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/obj/",
+        "projectPath": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj",
+        "packagesPath": "/Users/Erik Arsego/.nuget/packages/",
+        "outputPath": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/carolinacochlargraser/.nuget/NuGet/NuGet.Config"
+          "/Users/Erik Arsego/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -46,6 +46,20 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.7, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
