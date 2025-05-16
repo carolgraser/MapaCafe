@@ -2,7 +2,7 @@ namespace MapaCafe.Models
 {
     public class CadastroCafeteria
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string nomeCafeteria { get; set; } = string.Empty;
         public string ruaCafeteria { get; set; } = string.Empty;
         public string? complementoEndereco { get; set; }

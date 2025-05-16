@@ -1473,19 +1473,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/Erik Arsego/.nuget/packages/": {}
+    "/Users/carolinacochlargraser/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj",
+      "projectUniqueName": "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/MapaCafe.csproj",
       "projectName": "MapaCafe",
-      "projectPath": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj",
-      "packagesPath": "/Users/Erik Arsego/.nuget/packages/",
-      "outputPath": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/obj/",
+      "projectPath": "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/MapaCafe.csproj",
+      "packagesPath": "/Users/carolinacochlargraser/.nuget/packages/",
+      "outputPath": "/Users/carolinacochlargraser/Documents/GitHub/MapaCafe/MapaCafe/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/Erik Arsego/.nuget/NuGet/NuGet.Config"
+        "/Users/carolinacochlargraser/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
