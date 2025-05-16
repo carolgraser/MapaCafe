@@ -9,7 +9,7 @@ namespace MapaCafe.Controllers
     [ApiController]
     [Route("api/[controller]")]
 
-    public class CadastroController : ControllerBase
+    public class ComidaController : ControllerBase
 {
     private readonly MapaCafeContext _context;
 
