@@ -1,29 +1,47 @@
 import '../App.css';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import MenuLateral from './ListaMenu';
 import '../index';
+import Logo from './Logo';
 import { Button, Layout } from 'antd';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 
-const { Header, Sider } = Layout;
+const { Sider, Content } = Layout;
 
 function AppLayout(conteudo) {
 
-    const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
-    return (
-     <>
-    <Layout>
-      <Header style={{ padding: 0, background: '#1d6962' }}>
-      </Header>
+  return (
+    <>
       <Layout>
-        <Sider className="sidebar">
-            //Adicionar ListaMenu
-        </Sider>
-        <main className="content">{conteudo.children}</main>
+        <Layout>
+          <Sider width={230} collapsed={collapsed} collapsible trigger={null} className="sidebar">
+            <Logo />
+            <MenuLateral />
+          </Sider>
+          <div className="toggle-wrapper">
+            <Button
+              type="text"
+              className="toggle"
+              onClick={() => setCollapsed(!collapsed)}
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            />
+          </div>
+          <Content className="content-wrapper" style={{
+            padding: '20px',
+            overflow: 'auto',
+            height: '100vh'
+          }}>
+            <main className="content" style={{
+              flex: 1,
+              overflowY: 'auto',
+            }}>{conteudo.children}</main>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
 
-     </>
-    );
-  }
-  export default AppLayout;
+    </>
+  );
+}
+export default AppLayout;
