@@ -1,8 +1,8 @@
 # 📚 MapaCafe
 
-> Mapa Café
+## 🧾 Descrição
 
-## 🧾 O Mapa Café é uma plataforma web interativa desenvolvida com o objetivo de conectar amantes de café a experiências únicas em cafeterias. O site permite aos usuários descobrir cafeterias aconchegantes e charmosas, com base em localização, avaliações e preferências pessoais. Além da descoberta de novos locais, os usuários podem registrar memórias de suas visitas, incluindo notas e comentários, criando um diário personalizado de experiências. Também é possível avaliar as cafeterias visitadas, criar uma lista personalizada dos seus lugares favoritos, facilitando futuras visitas ou recomendações. O Mapa Café valoriza tanto a experiência sensorial do café quanto os aspectos sociais e emocionais das visitas às cafeterias, oferecendo uma ferramenta completa para explorar e organizar essa paixão.
+ O Mapa Café é uma plataforma web interativa desenvolvida com o objetivo de conectar amantes de café a experiências únicas em cafeterias. O site permite aos usuários descobrir cafeterias aconchegantes e charmosas, com base em localização, avaliações e preferências pessoais. Além da descoberta de novos locais, os usuários podem registrar memórias de suas visitas, incluindo notas e comentários, criando um diário personalizado de experiências. Também é possível avaliar as cafeterias visitadas, criar uma lista personalizada dos seus lugares favoritos, facilitando futuras visitas ou recomendações. O Mapa Café valoriza tanto a experiência sensorial do café quanto os aspectos sociais e emocionais das visitas às cafeterias, oferecendo uma ferramenta completa para explorar e organizar essa paixão.
 
 Explique o **enredo ou contexto** onde essa API se aplica. Por exemplo:
 
