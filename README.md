@@ -47,16 +47,32 @@ Explique o **enredo ou contexto** onde essa API se aplica. Por exemplo:
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/usuario/repositorio
+git clone https://github.com/carolgraser/MapaCafe.git
 
 # 2. Acesse a pasta do projeto
-cd nome-da-pasta
+cd .\MapaCafe\MapaCafe
 
-# 3. Restaure os pacotes
-dotnet restore
+# 3. Baixar o pacote EntityFrameworkCore, e execute os seguintes comandos:
+dotnet add package Microsoft.EntityFrameworkCore --version 7.0.7
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.7
+dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
 
-# 4. Execute a aplicação
+# 4. Atualize a senha do Banco de Dados no seguinte arquivo:
+cd .\MapaCafe\MapaCafe\appsettings.json
+
+# 5. Execute o Migrations no terminal:
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+# 6. Rode o Backend
 dotnet run
 
-#5 Executar o front-end
+# 7. Abra um novo terminal e acesse a pasta do frontend
+ cd \MapaCafe\MapaCafe\frontend
+
+# 8. Baixe React, com os seguintes comandos no terminal:
+npm install antd
+npm install @ant-design/icons
+
+# 9. Rode o Frontend
 npm start
