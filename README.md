@@ -1,1 +1,62 @@
-# MapaCafe
+# 📚 MapaCafe
+
+> Mapa Café
+
+## 🧾 O Mapa Café é uma plataforma web interativa desenvolvida com o objetivo de conectar amantes de café a experiências únicas em cafeterias. O site permite aos usuários descobrir cafeterias aconchegantes e charmosas, com base em localização, avaliações e preferências pessoais. Além da descoberta de novos locais, os usuários podem registrar memórias de suas visitas, incluindo notas e comentários, criando um diário personalizado de experiências. Também é possível avaliar as cafeterias visitadas, criar uma lista personalizada dos seus lugares favoritos, facilitando futuras visitas ou recomendações. O Mapa Café valoriza tanto a experiência sensorial do café quanto os aspectos sociais e emocionais das visitas às cafeterias, oferecendo uma ferramenta completa para explorar e organizar essa paixão.
+
+Explique o **enredo ou contexto** onde essa API se aplica. Por exemplo:
+
+> Esta API simula a gestão de experiências em cafeterias. Permite cadastrar cafeterias, registrar visitas, avaliações e criar listas personalizadas de locais favoritos."
+
+---
+
+## 👥 Integrantes da Dupla
+
+- Carolina Cochlar Graser - [carolgraser](https://github.com/carolgraser)
+- Erik Santiago Piana - [ErikArsego](https://github.com/ErikArsego)
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Linguagem:** C# (.NET 8)
+- **Framework:** ASP.NET Core
+- **ORM:** Entity Framework Core
+- **Banco de Dados:** MySQL
+- **Front-end:** React
+- **Versionamento:** Git + GitHub
+
+---
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+
+- [.NET SDK 8.0+](https://dotnet.microsoft.com/en-us/download)
+- MySQL instalado
+- Git instalado
+- Entity Framework Core
+- dotnet add package Microsoft.EntityFrameworkCore --version 7.0.7
+- dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.7
+- dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
+- Node JS (https://nodejs.org/pt)
+- Npm install antd
+- Npm install @ant-design/icons
+
+### Passos
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/usuario/repositorio
+
+# 2. Acesse a pasta do projeto
+cd nome-da-pasta
+
+# 3. Restaure os pacotes
+dotnet restore
+
+# 4. Execute a aplicação
+dotnet run
+
+#5 Executar o front-end
+npm start
