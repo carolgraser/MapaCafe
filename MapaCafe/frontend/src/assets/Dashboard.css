@@ -1,0 +1,79 @@
+/* src/assets/Dashboard.css */
+
+.dashboard-container {
+    padding: 24px;
+    background-color: #f7fafb;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .dashboard-card {
+    /* Remove altura fixa e overflow */
+    width: 100%;
+    max-width: 1400px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-card h2 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    /* Três colunas iguais */
+    grid-template-columns: repeat(3, 1fr);
+    /* Linhas flex: o 1fr garante que todo o espaço restante seja dividido igualmente */
+    grid-auto-rows: 1fr;
+    gap: 24px;
+    /* Nome das áreas, última visita e top trocados conforme mock */
+    grid-template-areas:
+      "visitas cidades ultima"
+      "media   top     ultima";
+    /* Faz o grid crescer para preencher o card, sem ultrapassar */
+    flex: 1 1 auto;
+    min-height: 0; /* importante para flex-basis funcionar */
+  }
+  
+  .dashboard-item {
+    background-color: #e1ecee;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;      /* empilha conteúdo verticalmente */
+    justify-content: flex-start; /* alinha ao topo */
+    align-items: center;         /* centraliza horizontalmente */
+    padding: 16px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+
+  
+  /* Posicionamento */
+  .dashboard-item.visitas {
+    grid-area: visitas;
+  }
+  .dashboard-item.cidades {
+    grid-area: cidades;
+  }
+  .dashboard-item.media {
+    grid-area: media;
+  }
+  .dashboard-item.top {
+    grid-area: top;
+  }
+  /* Última visita ocupa 3ª coluna e ambas linhas */
+  .dashboard-item.ultima {
+    grid-area: ultima;
+  }
+  

@@ -9,6 +9,8 @@ namespace MapaCafe.Models
         public string bairroCafeteria { get; set; } = string.Empty;
         public int numeroEndereco { get; set; }
         public string? cepEndereco { get; set; }
+        public string comidaFavorita { get; set; } = string.Empty;
+        public string bebidaFavorita { get; set; } = string.Empty;
 
         public int avaliacaoCafeteria { get; set; }
         public string observacoesCafeteria { get; set; } = string.Empty;
@@ -19,8 +21,6 @@ namespace MapaCafe.Models
         public int CadastroUsuarioId { get; set; }
         public CadastroUsuario? CadastroUsuario { get; set; }
 
-        public ICollection<ComidaCafeteria> ComidasFavoritas { get; set; } = new List<ComidaCafeteria>();
-        public ICollection<BebidaCafeteria> BebidasFavoritas { get; set; } = new List<BebidaCafeteria>();
     }    
 }
 
