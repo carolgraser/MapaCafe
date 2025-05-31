@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj": {}
+    "C:\\Users\\A479776\\Desktop\\MapaCafe\\MapaCafe\\MapaCafe.csproj": {}
   },
   "projects": {
-    "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj": {
+    "C:\\Users\\A479776\\Desktop\\MapaCafe\\MapaCafe\\MapaCafe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj",
+        "projectUniqueName": "C:\\Users\\A479776\\Desktop\\MapaCafe\\MapaCafe\\MapaCafe.csproj",
         "projectName": "MapaCafe",
-        "projectPath": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/MapaCafe.csproj",
-        "packagesPath": "/Users/Erik Arsego/.nuget/packages/",
-        "outputPath": "/Users/Erik Arsego/ProjetoJava/Sem Título/MapaCafe/MapaCafe/obj/",
+        "projectPath": "C:\\Users\\A479776\\Desktop\\MapaCafe\\MapaCafe\\MapaCafe.csproj",
+        "packagesPath": "C:\\Users\\A479776\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\A479776\\Desktop\\MapaCafe\\MapaCafe\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/Erik Arsego/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\A479776\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -77,6 +78,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -85,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.106/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

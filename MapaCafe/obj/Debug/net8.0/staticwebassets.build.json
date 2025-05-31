@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "hgrKrxzQfhSuC3GNp45Y1h0qrdxNOvLhXdPXrGaP+Dg=",
+  "Hash": "IkA4fsYz/T0NIdFUkL8G+rMHErpdUCkc45KIzsMoRVY=",
   "Source": "MapaCafe",
   "BasePath": "_content/MapaCafe",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

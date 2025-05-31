@@ -20,7 +20,7 @@ namespace MapaCafe.Data
             base.OnModelCreating(modelBuilder);
 
 
-            modelBuilder.Entity<DadosUsuario>().HasKey(u => u.id);
+            modelBuilder.Entity<DadosUsuario>().HasKey(u => u.Id);
             modelBuilder.Entity<CadastroUsuario>().HasBaseType<DadosUsuario>();
             modelBuilder.Entity<PerfilUsuario>().HasBaseType<DadosUsuario>();
 

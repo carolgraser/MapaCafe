@@ -1,5 +1,7 @@
+// src/pages/NovaCafeteria.jsx
+
 import React from 'react';
-import { Form, Input, Select, Button, Row, Col } from 'antd';
+import { Form, Input, Select, Button, Row, Col, message } from 'antd';
 import '../assets/NovaCafeteria.css';
 
 const { TextArea } = Input;
@@ -7,11 +9,50 @@ const { Option } = Select;
 
 const NovaCafeteria = () => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = React.useState(false);
 
-  const onFinish = (values) => {
-    console.log('Dados cadastrados:', values);
-    // aqui você chamaria sua API para salvar
-    form.resetFields();
+  const onFinish = async (values) => {
+    setLoading(true);
+
+    // Monte o payload de acordo com as propriedades do seu CadastroCafeteria.cs
+    const payload = {
+      NomeCafeteria:        values.nome,
+      RuaCafeteria:         values.rua,
+      ComplementoEndereco:  values.complemento || null,
+      BairroCafeteria:      values.bairro,
+      NumeroEndereco:       parseInt(values.numero, 10),
+      CepEndereco:          values.cep || null,
+      ComidaFavorita:       values.comida || null,
+      BebidaFavorita:       values.bebida || null,
+      AvaliacaoCafeteria:   values.nota,
+      ObservacoesCafeteria: values.observacoes || null
+      // Se você tiver o usuário logado, adicione aqui:
+      // UsuarioId: <ID_DO_USUARIO_LOGADO>
+    };
+
+    try {
+      const response = await fetch('http://localhost:5276/api/Cadastro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const text = await response.text();
+      console.log('POST /api/Cadastro →', response.status, text);
+
+      if (response.status === 201) {
+        message.success('Cafeteria cadastrada com sucesso!');
+        form.resetFields();
+      } else {
+        // Se veio 400, 500 etc., exibe a mensagem retornada
+        message.error(`Erro ao cadastrar (status ${response.status}): ${text}`);
+      }
+    } catch (error) {
+      console.error('Erro de fetch:', error);
+      message.error('Erro de conexão com o servidor');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -23,26 +64,32 @@ const NovaCafeteria = () => {
           layout="vertical"
           className="nova-form"
           onFinish={onFinish}
+          initialValues={{ nota: 3 }}
         >
           <Row gutter={16}>
             <Col span={16}>
               <Form.Item
                 name="nome"
                 label="Nome da Cafeteria"
-                rules={[{ required: true, message: 'Informe o nome' }]}
+                rules={[
+                  { required: true, message: 'Informe o nome da cafeteria' },
+                  { max: 100, message: 'Máximo de 100 caracteres' }
+                ]}
               >
-                <Input placeholder="Nome da Cafeteria" />
+                <Input placeholder="Ex: Café da Manhã" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item
                 name="nota"
-                label="Nota"
+                label="Avaliação"
                 rules={[{ required: true, message: 'Selecione a nota' }]}
               >
-                <Select placeholder="Nota">
-                  {[1,2,3,4,5].map(n => (
-                    <Option key={n} value={n}>{n}</Option>
+                <Select placeholder="Selecione">
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <Option key={n} value={n}>
+                      {n} {n > 1 ? 'estrelas' : 'estrela'}
+                    </Option>
                   ))}
                 </Select>
               </Form.Item>
@@ -51,10 +98,13 @@ const NovaCafeteria = () => {
 
           <Form.Item
             name="rua"
-            label="Endereço"
-            rules={[{ required: true, message: 'Informe a rua' }]}
+            label="Rua"
+            rules={[
+              { required: true, message: 'Informe a rua' },
+              { max: 200, message: 'Máximo de 200 caracteres' }
+            ]}
           >
-            <Input placeholder="Rua" />
+            <Input placeholder="Ex: Rua das Flores" />
           </Form.Item>
 
           <Row gutter={16}>
@@ -62,31 +112,41 @@ const NovaCafeteria = () => {
               <Form.Item
                 name="bairro"
                 label="Bairro"
-                rules={[{ required: true, message: 'Informe o bairro' }]}
+                rules={[
+                  { required: true, message: 'Informe o bairro' },
+                  { max: 100, message: 'Máximo de 100 caracteres' }
+                ]}
               >
-                <Input placeholder="Bairro" />
+                <Input placeholder="Ex: Centro" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item
                 name="cep"
                 label="CEP"
-                rules={[{ required: true, message: 'Informe o CEP' }]}
+                rules={[
+                  { pattern: /^[0-9]{8}$/, message: 'CEP deve ter 8 dígitos' }
+                ]}
               >
-                <Input placeholder="CEP" />
+                <Input placeholder="Ex: 00000000" maxLength={8} />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item
                 name="numero"
                 label="Número"
-                rules={[{ required: true, message: 'Informe o número' }]}
+                rules={[
+                  { required: true, message: 'Informe o número' },
+                  { pattern: /^[0-9]+$/, message: 'Apenas números são permitidos' }
+                ]}
               >
-                <Input placeholder="Número" />
+                <Input placeholder="Ex: 123" />
               </Form.Item>
             </Col>
           </Row>
 
+          {/* Se seu modelo C# não tiver "Cidade" nem "Estado", remova esses campos.
+              Caso deseje armazenar esses dados no BD, inclua-os no model e migre. */}
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
@@ -94,7 +154,7 @@ const NovaCafeteria = () => {
                 label="Cidade"
                 rules={[{ required: true, message: 'Informe a cidade' }]}
               >
-                <Input placeholder="Cidade" />
+                <Input placeholder="Ex: São Paulo" />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -103,35 +163,38 @@ const NovaCafeteria = () => {
                 label="Estado"
                 rules={[{ required: true, message: 'Informe o estado' }]}
               >
-                <Input placeholder="Estado" />
+                <Input placeholder="Ex: SP" maxLength={2} />
               </Form.Item>
             </Col>
           </Row>
 
-          <Form.Item
-            name="comida"
-            label="Comida Favorita"
-          >
-            <Input placeholder="Comida Favorita" />
+          <Form.Item name="comida" label="Comida Favorita">
+            <Input placeholder="Ex: Croissant" />
           </Form.Item>
 
-          <Form.Item
-            name="bebida"
-            label="Bebida Favorita"
-          >
-            <Input placeholder="Bebida Favorita" />
+          <Form.Item name="bebida" label="Bebida Favorita">
+            <Input placeholder="Ex: Cappuccino" />
           </Form.Item>
 
-          <Form.Item
-            name="observacoes"
-            label="Observações"
-          >
-            <TextArea rows={4} placeholder="Observações" />
+          <Form.Item name="observacoes" label="Observações">
+            <TextArea
+              rows={4}
+              placeholder="Ex: Ambiente aconchegante e atendimento excelente"
+              showCount
+              maxLength={500}
+            />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Cadastrar
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              disabled={loading}
+              size="large"
+              block
+            >
+              {loading ? 'Cadastrando...' : 'Cadastrar Cafeteria'}
             </Button>
           </Form.Item>
         </Form>
