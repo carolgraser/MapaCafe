@@ -14,20 +14,18 @@ const NovaCafeteria = () => {
   const onFinish = async (values) => {
     setLoading(true);
 
-    // Monte o payload de acordo com as propriedades do seu CadastroCafeteria.cs
+    // Monta o payload sem incluir UsuarioId
     const payload = {
-      NomeCafeteria:        values.nome,
-      RuaCafeteria:         values.rua,
-      ComplementoEndereco:  values.complemento || null,
-      BairroCafeteria:      values.bairro,
-      NumeroEndereco:       parseInt(values.numero, 10),
-      CepEndereco:          values.cep || null,
-      ComidaFavorita:       values.comida || null,
-      BebidaFavorita:       values.bebida || null,
-      AvaliacaoCafeteria:   values.nota,
-      ObservacoesCafeteria: values.observacoes || null
-      // Se você tiver o usuário logado, adicione aqui:
-      // UsuarioId: <ID_DO_USUARIO_LOGADO>
+      nomeCafeteria:        values.nome,
+      ruaCafeteria:         values.rua,
+      complementoEndereco:  values.complemento || null,
+      bairroCafeteria:      values.bairro,
+      numeroEndereco:       parseInt(values.numero, 10),
+      cepEndereco:          values.cep || null,
+      comidaFavorita:       values.comida || null,
+      bebidaFavorita:       values.bebida || null,
+      avaliacaoCafeteria:   values.nota,
+      observacoesCafeteria: values.observacoes || null
     };
 
     try {
@@ -44,7 +42,6 @@ const NovaCafeteria = () => {
         message.success('Cafeteria cadastrada com sucesso!');
         form.resetFields();
       } else {
-        // Se veio 400, 500 etc., exibe a mensagem retornada
         message.error(`Erro ao cadastrar (status ${response.status}): ${text}`);
       }
     } catch (error) {
@@ -145,8 +142,6 @@ const NovaCafeteria = () => {
             </Col>
           </Row>
 
-          {/* Se seu modelo C# não tiver "Cidade" nem "Estado", remova esses campos.
-              Caso deseje armazenar esses dados no BD, inclua-os no model e migre. */}
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item

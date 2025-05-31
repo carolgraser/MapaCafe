@@ -14,21 +14,18 @@ namespace MapaCafe.Data
         public DbSet<CadastroUsuario> Usuarios { get; set; }
         public DbSet<PerfilUsuario> Perfis { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<DadosUsuario>()
+                .HasKey(u => u.Id);
 
-            modelBuilder.Entity<DadosUsuario>().HasKey(u => u.Id);
-            modelBuilder.Entity<CadastroUsuario>().HasBaseType<DadosUsuario>();
-            modelBuilder.Entity<PerfilUsuario>().HasBaseType<DadosUsuario>();
+            modelBuilder.Entity<CadastroUsuario>()
+                .HasBaseType<DadosUsuario>();
 
-            
-            modelBuilder.Entity<CadastroCafeteria>()
-                .HasOne(c => c.Usuario)
-                .WithMany(u => u.CafeteriasCadastradas)
-                .HasForeignKey(c => c.UsuarioId);
+            modelBuilder.Entity<PerfilUsuario>()
+                .HasBaseType<DadosUsuario>();
 
         }
     }

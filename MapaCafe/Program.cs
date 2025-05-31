@@ -1,80 +1,47 @@
-using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using MapaCafe.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Exemplo usando usuário “mapauser” que tenha permissão no banco “mapacafe”
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-                      ?? "server=localhost;database=mapacafe;user=root;password=Carol";
-
-builder.Services.AddDbContext<MapaCafeContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
-// ... o resto do Program.cs permanece igual
-
-
-// 2) Registre os Controllers
-builder.Services.AddControllers();
-
-// 3) Habilite o Swagger (opcional, mas ajuda a testar via UI)
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// 4) Configure CORS para permitir chamadas do React (origem http://localhost:3000)
+var reactOrigins = "_reactOrigins";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("ReactPolicy", policy =>
+    options.AddPolicy(name: reactOrigins, policy =>
     {
-        policy.WithOrigins("http://localhost:3000")  // porta padrão do Create React App
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        policy
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
 });
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<MapaCafeContext>(options =>
+    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 32))));
+
+builder.Services.AddControllers()
+    .AddJsonOptions(opts =>
+    {
+        opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-// 5) Configure o pipeline de middleware
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// 3) Aplicar CORS antes dos endpoints
+app.UseCors(reactOrigins);
+
 app.UseHttpsRedirection();
 
-// 6) Aplique a política de CORS antes de MapControllers
-app.UseCors("ReactPolicy");
-
-// 7) Mapear rotas dos Controllers (CadastroController, etc.)
 app.MapControllers();
 
-// 8) (Opcional) rota de exemplo de weather, se você ainda quiser manter
-app.MapGet("/weatherforecast", () =>
-{
-    var summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", 
-        "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
 app.Run();
-
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
