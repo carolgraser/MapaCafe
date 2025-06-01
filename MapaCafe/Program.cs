@@ -37,7 +37,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// 3) Aplicar CORS antes dos endpoints
 app.UseCors(reactOrigins);
 
 app.UseHttpsRedirection();

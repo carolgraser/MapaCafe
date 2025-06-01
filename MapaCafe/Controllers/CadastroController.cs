@@ -16,14 +16,14 @@ namespace MapaCafe.Controllers
             _context = context;
         }
 
-        // GET: api/Cadastro
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CadastroCafeteria>>> GetCafeteria()
         {
             return await _context.Cafeterias.ToListAsync();
         }
 
-        // GET: api/Cadastro/5
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<CadastroCafeteria>> GetCafeteria(int id)
         {
@@ -35,18 +35,17 @@ namespace MapaCafe.Controllers
             return cafeteria;
         }
 
-        // POST: api/Cadastro
+       
         [HttpPost]
         public async Task<ActionResult<CadastroCafeteria>> PostCafeteria(CadastroCafeteria cafeteria)
         {
             _context.Cafeterias.Add(cafeteria);
             await _context.SaveChangesAsync();
 
-            // Este NamedGet refere-se ao método GetCafeteria(int id) acima
             return CreatedAtAction(nameof(GetCafeteria), new { id = cafeteria.Id }, cafeteria);
         }
 
-        // PUT: api/Cadastro/5
+  
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCafeteria(int id, CadastroCafeteria cafeteria)
         {
@@ -69,7 +68,6 @@ namespace MapaCafe.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Cadastro/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCafeteria(int id)
         {

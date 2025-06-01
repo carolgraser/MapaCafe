@@ -1,13 +1,12 @@
-// src/components/ListaMenu.jsx
 import { Menu } from "antd";
-import { //icons visuais
+import { 
   HomeOutlined,
   CoffeeOutlined,
   PlusCircleOutlined,
   DashboardOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Link, useLocation } from "react-router-dom"; //utiliza para detectar qual pagina esta ativa no momento 
+import { Link, useLocation } from "react-router-dom";  
 
 const ListaMenu = () => {
   const location = useLocation();
@@ -42,7 +41,7 @@ const ListaMenu = () => {
   ];
 
   return (  
-    <Menu // Renderiza o menu com os itens definidos
+    <Menu 
       mode="inline"
       className="menu-bar"
       selectedKeys={[selectedKey]}
@@ -51,4 +50,4 @@ const ListaMenu = () => {
   );
 };
 
-export default ListaMenu; //exportando para ser usado no layout
+export default ListaMenu; 

@@ -1,4 +1,3 @@
-// MapaCafe/Models/CadastroCafeteria.cs
 namespace MapaCafe.Models
 {
     public class CadastroCafeteria

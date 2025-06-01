@@ -1,5 +1,3 @@
-// src/pages/NovaCafeteria.jsx
-
 import React from 'react';
 import { Form, Input, Select, Button, Row, Col, message } from 'antd';
 import '../assets/NovaCafeteria.css';
@@ -14,7 +12,6 @@ const NovaCafeteria = () => {
   const onFinish = async (values) => {
     setLoading(true);
 
-    // Monta o payload sem incluir UsuarioId
     const payload = {
       nomeCafeteria:        values.nome,
       ruaCafeteria:         values.rua,

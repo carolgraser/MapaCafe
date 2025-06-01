@@ -1,4 +1,3 @@
-// src/pages/MeuPerfil.jsx
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import '../assets/MeuPerfil.css';
@@ -33,11 +32,9 @@ const MeuPerfil = () => {
   }, [form]);
 
   const onFinish = (values) => {
-    // Como telefoneUsuario é int (não nullable), vamos usar 0 por padrão
     const telefonePadrao = 0;
 
     if (perfilId) {
-      // Atualização (PUT) — inclui id e telefoneUsuario como número
       const payloadParaPut = {
         id: perfilId,
         nomeUsuario: values.nome,
@@ -60,7 +57,6 @@ const MeuPerfil = () => {
           message.error('Falha ao atualizar perfil.');
         });
     } else {
-      // Criação (POST) — não inclui id, mas ENVIA telefoneUsuario como número
       const payloadParaPost = {
         nomeUsuario: values.nome,
         emailUsuario: values.email,

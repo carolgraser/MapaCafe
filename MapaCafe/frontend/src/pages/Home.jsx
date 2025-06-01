@@ -1,10 +1,10 @@
-import React from 'react'; // Importa o React para permitir criação de componentes
-import { Typography, List } from 'antd'; // Importa componentes de tipografia e listas da biblioteca Ant Design
-import '../assets/Home.css'; // Importa o arquivo de estilos CSS específico desta página
+import React from 'react'; 
+import { Typography, List } from 'antd'; 
+import '../assets/Home.css'; 
 
 const { Title, Paragraph } = Typography; 
 
-const funcionalidades = [ // Cria um array de objetos com as principais funcionalidades do app
+const funcionalidades = [ 
   {
     title: 'Registre suas Visitas',
     description: 'Adicione detalhes como nome, localização, nota e suas bebidas favoritas.'
@@ -19,7 +19,7 @@ const funcionalidades = [ // Cria um array de objetos com as principais funciona
   }
 ];
 
-const Home = () => ( // Define o componente funcional Home
+const Home = () => ( 
   <div className="home-container">
     <Title level={2} className="home-title">
       Descubra os melhores cafés da cidade e registre cada visita.
@@ -54,4 +54,4 @@ const Home = () => ( // Define o componente funcional Home
   </div>
 );
 
-export default Home; // Exporta a Home para ser usada em outras partes do projeto
+export default Home; 
