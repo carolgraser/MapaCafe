@@ -1,16 +1,16 @@
-import '../App.css';
-import { useState } from 'react';
+import '../App.css'; // Importa os estilos globais do app
+import { useState } from 'react'; // Importa o hook useState para manipular o estado do menu
 import MenuLateral from './ListaMenu';
-import '../index';
+import '../index'; //Importa o arquivo de entrada principal
 import Logo from './Logo';
 import { Button, Layout } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 
-const { Sider, Content } = Layout;
+const { Sider, Content } = Layout; // Desestruturando o Layout da Ant Design do menu lateral e conteúdo principal
 
-function AppLayout(conteudo) {
+function AppLayout(conteudo) { // Função principal do layout. Recebe como parâmetro o conteúdo (children) a ser exibido
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false); // Cria um estado chamado collapsed, que define se o menu está recolhido (true) ou aberto (false)
 
   return (
     <>
@@ -44,4 +44,4 @@ function AppLayout(conteudo) {
     </>
   );
 }
-export default AppLayout;
+export default AppLayout; 
