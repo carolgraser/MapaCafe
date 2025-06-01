@@ -12,53 +12,53 @@ import '../assets/MinhasCafeterias.css';
 const { Search } = Input;
 
 const MinhasCafeterias = () => {
-  const [rawData, setRawData]           = useState([]);  // dados vindos do servidor
-  const [displayData, setDisplayData]   = useState([]);  // dados filtrados/exibidos
-  const [searchText, setSearchText]     = useState('');
+  const [rawData, setRawData] = useState([]);         // dados vindos do servidor (sem filtragem)
+  const [displayData, setDisplayData] = useState([]); // dados exibidos (após filtros)
+  const [searchText, setSearchText] = useState('');
   const [selectedRatings, setSelectedRatings] = useState([]);
 
-  // Ao montar o componente, busca a lista no servidor
+  // Ao montar o componente, busca a lista de cafeterias no servidor
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch('http://localhost:5276/api/Cadastro');
-        console.log('GET /api/Cadastro →', res.status);
+    fetchCafeterias();
+  }, []);
 
-        if (res.status !== 200) {
-          throw new Error(await res.text());
-        }
+  const fetchCafeterias = async () => {
+    try {
+      const res = await fetch('http://localhost:5276/api/Cadastro');
+      if (res.status !== 200) {
+        throw new Error(await res.text());
+      }
+      const list = await res.json();
 
-        const list = await res.json();
-        console.log('Lista recebida:', list);
-
-        setRawData(list);
-        // Inicialmente exibimos todos
-        setDisplayData(list.map(c => ({
+      // Atualiza rawData e displayData (inicialmente sem filtros)
+      setRawData(list);
+      setDisplayData(
+        list.map(c => ({
           key: c.id,
           nome: c.nomeCafeteria,
-          endereco: `${c.ruaCafeteria}, ${c.bairroCafeteria}`,
+          endereco: ${c.ruaCafeteria}, ${c.bairroCafeteria},
           comidas: c.comidaFavorita || '',
           bebidas: c.bebidaFavorita || '',
           nota: c.avaliacaoCafeteria,
-          comentarios: c.observacoesCafeteria || ''
-        })));
-      } catch (err) {
-        console.error('Erro ao buscar cafeterias:', err);
-        message.error('Erro ao carregar cafeterias');
-      }
-    })();
-  }, []);
+          comentarios: c.observacoesCafeteria || '',
+        }))
+      );
+    } catch (err) {
+      console.error('Erro ao buscar cafeterias:', err);
+      message.error('Erro ao carregar cafeterias');
+    }
+  };
 
-  // Função para aplicar filtros (busca por texto + notas selecionadas)
-  const applyFilterLogic = (text, ratings) => {
-    let temp = rawData.map(c => ({
+  // Função que retorna o array filtrado (sem alterar estado ainda)
+  const applyFilterLogic = (text, ratings, dataSource) => {
+    let temp = dataSource.map(c => ({
       key: c.id,
       nome: c.nomeCafeteria,
-      endereco: `${c.ruaCafeteria}, ${c.bairroCafeteria}`,
+      endereco: ${c.ruaCafeteria}, ${c.bairroCafeteria},
       comidas: c.comidaFavorita || '',
       bebidas: c.bebidaFavorita || '',
       nota: c.avaliacaoCafeteria,
-      comentarios: c.observacoesCafeteria || ''
+      comentarios: c.observacoesCafeteria || '',
     }));
 
     if (text) {
@@ -79,17 +79,49 @@ const MinhasCafeterias = () => {
     return temp;
   };
 
+  // Chamado quando o usuário digita algo e pressiona Enter na busca
   const onSearch = (val) => {
     setSearchText(val);
-    setDisplayData(applyFilterLogic(val, selectedRatings));
+    const filtered = applyFilterLogic(val, selectedRatings, rawData);
+    setDisplayData(filtered);
   };
 
+  // Chamado quando as checkboxes de nota mudam
   const onRatingChange = (checkedValues) => {
     setSelectedRatings(checkedValues);
   };
 
+  // Chamado ao clicar em "Aplicar" no popover de filtros
   const applyFilters = () => {
-    setDisplayData(applyFilterLogic(searchText, selectedRatings));
+    const filtered = applyFilterLogic(searchText, selectedRatings, rawData);
+    setDisplayData(filtered);
+  };
+
+  // Função que executa o DELETE no backend e atualiza os estados
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(http://localhost:5276/api/Cadastro/${id}, {
+        method: 'DELETE',
+      });
+
+      if (res.status === 204) {
+        message.success('Cafeteria excluída com sucesso');
+        // Remove do rawData
+        const newRaw = rawData.filter(item => item.id !== id);
+        setRawData(newRaw);
+        // Reaplica filtros sobre o novo rawData
+        const newDisplay = applyFilterLogic(searchText, selectedRatings, newRaw);
+        setDisplayData(newDisplay);
+      } else if (res.status === 404) {
+        message.warning('Cafeteria não encontrada (já removida?)');
+      } else {
+        const texto = await res.text();
+        throw new Error(Status ${res.status}: ${texto});
+      }
+    } catch (err) {
+      console.error('Erro ao excluir cafeteria:', err);
+      message.error('Erro ao excluir cafeteria');
+    }
   };
 
   const columns = [
@@ -112,7 +144,7 @@ const MinhasCafeterias = () => {
           <EditOutlined onClick={() => console.log('Editar', record.key)} />
           <DeleteOutlined
             className="delete-icon"
-            onClick={() => console.log('Excluir', record.key)}
+            onClick={() => handleDelete(record.key)}
           />
         </Space>
       ),
