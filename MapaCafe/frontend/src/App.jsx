@@ -1,4 +1,8 @@
 // src/App.jsx
+
+//Esse arquivo App.jsx é o ponto central de navegação da aplicação. 
+//Ele define todas as rotas do sistema, ou seja, quais páginas aparecem dependendo da URL
+
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import AppLayout from './components/Layout';
